@@ -1,4 +1,4 @@
-// activity_main2.xml layout text - DELETE FROM CODE
+// activity_main2.xml layout - DELETE CODE
 
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -78,9 +78,7 @@
 
 </RelativeLayout>
 
-
-
-// Main2Activity.java - DELETE FROM CODE
+// Activity2Main.java - DELETE CODE
 
 package asb.deafcinemaconnect;
 
@@ -96,8 +94,9 @@ import android.widget.Toast;
 
 public class Main2Activity extends Activity {
 
-    EditText no, msg;
-    Button btnSendSms;
+    EditText phoneNumber;
+    EditText textMessage;
+    Button sendSMSButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,11 +106,11 @@ public class Main2Activity extends Activity {
         ImageView headerPicImageView = (ImageView) findViewById(R.id.headerPicImageView);
         headerPicImageView.setImageResource(R.mipmap.projicon);
 
-        no = (EditText) findViewById(R.id.numberEditText);
-        msg = (EditText) findViewById(R.id.SMSEditText);
-        btnSendSms = (Button) findViewById(R.id.textFriendsButton);
+        phoneNumber = (EditText) findViewById(R.id.numberEditText);
+        textMessage = (EditText) findViewById(R.id.SMSEditText);
+        sendSMSButton = (Button) findViewById(R.id.textFriendsButton);
 
-        btnSendSms.setOnClickListener(new View.OnClickListener() {
+        sendSMSButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -137,13 +136,14 @@ public class Main2Activity extends Activity {
 
         protected void sendSms(){
 
-        String number = no.getText().toString();
-        String message = msg.getText().toString();
+        String number = phoneNumber.getText().toString();
+        String message = textMessage.getText().toString();
 
         SmsManager manager = SmsManager.getDefault();
         manager.sendTextMessage(number, null, message, null, null);
-        Toast.makeText(getApplicationContext(), "Sent successfully!", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Sent successfully!", Toast.LENGTH_LONG).show();
     }
 
 
     } // end sendSMS
+

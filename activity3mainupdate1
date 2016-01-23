@@ -1,35 +1,28 @@
-// activity_main3.xml layout text - DELETE FROM CODE
-
+// activity_main3.xml layout - DELETE CODE
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-        android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         tools:context="asb.deafcinemaconnect.Main3Activity"
-        android:background="#9194e7">
-
-
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="130dp"
-        android:id="@+id/headerPicImageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="Picture of Deaf Cinema Connect logo" />
+        android:background="#9194e7"
+        android:weightSum="1">
 
 
     <WebView
-        android:layout_width="match_parent"
-        android:layout_height="151dp"
+        android:layout_width="fill_parent"
+        android:layout_height="380dp"
         android:id="@+id/trailerWebView"
         android:layout_centerHorizontal="true"
         android:layout_row="1"
         android:layout_column="0"
         android:layout_gravity="center_horizontal"
         android:layout_above="@+id/returnMainButton"
-        android:layout_below="@+id/headerPicImageView" />
+        android:layout_alignParentTop="true" />
 
     <Button
         android:layout_width="wrap_content"
@@ -37,11 +30,12 @@
         android:text="Find another movie"
         android:id="@+id/returnMainButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="bottom" />
 
 </RelativeLayout>
 
-// MainActivity3.java - DELETE FROM CODE
+// Main3Activity.java - DELETE CODE
 
 package asb.deafcinemaconnect;
 
@@ -52,24 +46,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ImageView;
 
 public class Main3Activity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main3);
 
-        ImageView headerPicImageView = (ImageView) findViewById(R.id.headerPicImageView);
-        headerPicImageView.setImageResource(R.mipmap.projicon);
-
-        String url = "www.yourlocalcinema.com/subtitled.trailers.html";
-        WebView view = (WebView) this.findViewById(R.id.trailerWebView);
-        view.getSettings().setJavaScriptEnabled(true);
-        view.loadUrl(url);
+        WebView trailerWebView = (WebView) findViewById(R.id.trailerWebView);
+        trailerWebView.loadUrl("http://www.yourlocalcinema.com/subtitled.trailers.html");
+        trailerWebView.getSettings().setJavaScriptEnabled(true);
 
         Button returnMainButton = (Button)findViewById(R.id.returnMainButton);
 
@@ -94,9 +82,7 @@ public class Main3Activity extends Activity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
+
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
