@@ -1,0 +1,62 @@
+package asb.deafcinemaconnect;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+
+public class FragmentThree extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_three_layout, container, false);
+        WebView trailerWebView = (WebView) rootView.findViewById(R.id.trailerWebView);
+        WebSettings webSettings = trailerWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        trailerWebView.loadUrl("http://www.yourlocalcinema.com/subtitled.trailers.html");
+
+        return rootView;
+    }
+
+
+    /*
+    @Override
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        WebView trailerWebView = (WebView) findViewById(R.id.trailerWebView);
+        trailerWebView.loadUrl("http://www.yourlocalcinema.com/subtitled.trailers.html");
+        trailerWebView.getSettings().setJavaScriptEnabled(true);
+
+    } // end onCreate
+    */
+
+
+
+    /*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+    */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
