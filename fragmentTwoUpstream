@@ -1,0 +1,59 @@
+package asb.deafcinemaconnect;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.telephony.SmsManager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
+
+public class FragmentTwo extends Fragment {
+
+    EditText phoneNumber;
+    EditText textMessage;
+    Button sendSMSButton;
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
+        View rootView = inflater.inflate(R.layout.fragment_two_layout, container, false);
+        ImageView headerPicImageView = (ImageView) rootView.findViewById(R.id.headerPicImageView);
+        headerPicImageView.setImageResource(R.mipmap.projicon);
+
+            return rootView;
+        }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        phoneNumber = (EditText) phoneNumber.findViewById(R.id.numberEditText);
+        textMessage = (EditText) textMessage.findViewById(R.id.SMSEditText);
+        sendSMSButton = (Button) sendSMSButton.findViewById(R.id.textFriendsButton);
+
+        sendSMSButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                sendSms();
+
+            }
+        });
+
+    } // end onCreate
+
+    protected void sendSms(){
+
+        String number = phoneNumber.getText().toString();
+        String message = textMessage.getText().toString();
+
+        SmsManager manager = SmsManager.getDefault();
+        manager.sendTextMessage(number, null, message, null, null);
+        Toast.makeText(getActivity(), "Sent successfully!", Toast.LENGTH_SHORT).show();
+    }
+}
