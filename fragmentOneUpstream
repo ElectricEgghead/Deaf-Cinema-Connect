@@ -1,0 +1,54 @@
+package asb.deafcinemaconnect;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.support.v4.app.Fragment;
+
+
+public class FragmentOne extends Fragment {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_one_layout, container, false);
+        WebView siteWebView = (WebView) rootView.findViewById(R.id.siteWebView);
+        WebSettings webSettings = siteWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        siteWebView.loadUrl("http://www.captionfish.com");
+
+        return rootView;
+    }
+
+    // **************  SIGNED APK - RELEASE MODE - GOOGLE PLAY STORE
+
+    // LINK TO PAGERADAPTER YOUTUBE VIDEO - DELETE
+    // https://www.youtube.com/watch?v=pCz2znfwhGc  *******
+
+
+
+    /*
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    */
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+}
