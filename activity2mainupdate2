@@ -2,42 +2,28 @@
 
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="fill_parent"
+    android:layout_height="fill_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="asb.deafcinemaconnect.Main2Activity"
-    android:background="#9194e7">
+    android:background="#21b6a8">
 
-    <ImageView
-        android:layout_width="160dp"
-        android:layout_height="130dp"
-        android:id="@+id/headerPicImageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:contentDescription="Picture of Deaf Cinema Connect logo" />
+    <!-- TODO: Remove header image, SMS page -->
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/EditText"
-        android:text="Enter Number:"
-        android:layout_below="@+id/headerPicImageView"
-        android:layout_centerHorizontal="true"
-        android:enabled="false"
-        android:editable="false"
-        android:inputType="none"
-        android:textColor="#ffffff" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="phone"
-        android:ems="10"
+        android:ems="12"
         android:id="@+id/numberEditText"
-        android:layout_below="@+id/EditText"
-        android:layout_centerHorizontal="true" />
+        android:hint="@string/numberEditText"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/textFriendsButton"
+        android:textColor="#FFD197" />
 
     <Space
         android:layout_width="20dp"
@@ -48,35 +34,45 @@
 
     <EditText
         android:layout_width="fill_parent"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:id="@+id/SMSEditText"
-        android:layout_below="@+id/space"
-        android:layout_alignParentEnd="false"
-        android:layout_alignParentStart="false"
-        android:background="#ccccc9"
-        android:hint="Enter message"
+        android:background="#CBFFFA"
+        android:hint="@string/SMSEditText"
+        android:maxLength="160"
         android:inputType="textMultiLine|textAutoComplete|textAutoCorrect"
-        android:nestedScrollingEnabled="true" />
+        android:nestedScrollingEnabled="true"
+        android:layout_above="@+id/returnMainButton"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="56dp"
+        android:layout_toStartOf="@+id/textFriendsButton" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Send Text!"
+        android:text="@string/textFriendsButton"
         android:id="@+id/textFriendsButton"
-        android:layout_below="@+id/SMSEditText"
-        android:layout_centerHorizontal="true"
         android:elegantTextHeight="false"
-        android:layout_marginTop="30dp" />
+        android:layout_alignTop="@+id/SMSEditText"
+        android:layout_alignParentEnd="true"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:background="#7f1917"
+        android:textColor="#FFD197" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Find another movie"
+        android:text="@string/returnMainButton"
         android:id="@+id/returnMainButton"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_toStartOf="@+id/textFriendsButton"
+        android:background="#7f1917"
+        android:textColor="#FFD197" />
 
 </RelativeLayout>
+
 
 
 
@@ -91,27 +87,24 @@ import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Main2Activity extends Activity {
 
-    EditText no, msg;
-    Button btnSendSms;
+    EditText phoneNumber;
+    EditText textMessage;
+    Button sendSMSButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
 
-        ImageView headerPicImageView = (ImageView) findViewById(R.id.headerPicImageView);
-        headerPicImageView.setImageResource(R.mipmap.projicon);
+        phoneNumber = (EditText) findViewById(R.id.numberEditText);
+        textMessage = (EditText) findViewById(R.id.SMSEditText);
+        sendSMSButton = (Button) findViewById(R.id.textFriendsButton);
 
-        no = (EditText) findViewById(R.id.numberEditText);
-        msg = (EditText) findViewById(R.id.SMSEditText);
-        btnSendSms = (Button) findViewById(R.id.textFriendsButton);
-
-        btnSendSms.setOnClickListener(new View.OnClickListener() {
+        sendSMSButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
@@ -137,12 +130,12 @@ public class Main2Activity extends Activity {
 
         protected void sendSms(){
 
-        String number = no.getText().toString();
-        String message = msg.getText().toString();
+        String number = phoneNumber.getText().toString();
+        String message = textMessage.getText().toString();
 
         SmsManager manager = SmsManager.getDefault();
         manager.sendTextMessage(number, null, message, null, null);
-        Toast.makeText(getApplicationContext(), "Sent successfully!", Toast.LENGTH_LONG);
+        Toast.makeText(getApplicationContext(), "Sent successfully!", Toast.LENGTH_LONG).show();
     }
 
 
