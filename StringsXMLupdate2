@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">DeafCinemaConnect</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main2">Main2Activity</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="headerPicImageView">Picture of Deaf Cinema Connect logo</string>
+    <string name="textButton">Text Friends</string>
+    <string name="watchTrailersButton">Watch Trailers</string>
+    <string name="dateCalendarView">Calendar to leave showtime reminders</string>
+    <string name="numberEditText">To</string>
+    <string name="SMSEditText">Enter message</string>
+    <string name="textFriendsButton">Send!</string>
+    <string name="returnMainButton">Find another movie</string>
+</resources>
