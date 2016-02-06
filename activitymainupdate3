@@ -1,0 +1,194 @@
+ // activity_main.xml layout text - DELETE FROM CODE.
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    android:background="#21b6a8"
+    android:nestedScrollingEnabled="true">
+
+        <WebView
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/siteWebView"
+            android:layout_alignParentEnd="false"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_above="@+id/textButton" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/textButton"
+            android:id="@+id/textButton"
+            android:layout_gravity="center_horizontal"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:background="#7f1917"
+            android:textColor="#ffd197"
+            android:layout_marginTop="4dp" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/watchTrailersButton"
+            android:id="@+id/watchTrailersButton"
+            android:layout_above="@+id/scrollView"
+            android:layout_alignEnd="@+id/scrollView"
+            android:background="#7f1917"
+            android:allowUndo="true"
+            android:textColor="#ffd197"
+            android:singleLine="true"
+            android:layout_marginTop="4dp" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/scrollView"
+            android:layout_below="@+id/textButton"
+            android:layout_alignParentStart="true">
+
+        </ScrollView>
+
+    <CalendarView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateCalendarView"
+        android:clickable="true"
+        android:minDate=""
+        android:contentDescription="@string/dateCalendarView"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/siteWebView"
+        android:layout_below="@+id/textButton"
+        android:background="#cbfffa"
+        android:layout_marginTop="4dp"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
+
+
+
+
+// MainActivity.java - DELETE FROM CODE
+
+package asb.deafcinemaconnect;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+
+public class MainActivity extends Activity {
+
+    // TODO: Fit to device screen
+    // http://developer.android.com/guide/practices/screens_support.html#screen-independence
+
+    // **************  SIGNED APK - RELEASE MODE - GOOGLE PLAY STORE <!--TODO: Remove; RELEASE mode>
+
+    // LINK TO PAGERADAPTER YOUTUBE VIDEO - DELETE
+    // https://www.youtube.com/watch?v=pCz2znfwhGc  *******
+
+
+    WebView siteWebView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        siteWebView = (WebView) findViewById(R.id.siteWebView);
+        siteWebView.setWebViewClient(new siteWebClient());
+        siteWebView.getSettings().setJavaScriptEnabled(true);
+        siteWebView.loadUrl("http://www.captionfish.com/"); // TODO: Speed up site
+
+
+        Button textButton = (Button) findViewById(R.id.textButton);
+
+        textButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+        Button watchTrailersButton = (Button) findViewById(R.id.watchTrailersButton);
+
+        watchTrailersButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Main3Activity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+    } // end onCreate
+
+    public class siteWebClient extends WebViewClient {
+
+        @Override
+        public void onPageStarted(WebView siteWebView, String url, Bitmap favicon) {
+            super.onPageStarted(siteWebView, url, favicon); // TODO: Create a favicon
+
+        } // end onPageStarted
+
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+            view.loadUrl(url);
+            return true;
+        } // end shouldOverrideUrlLoading
+    }
+
+        // to handle "Back" key press event, stay in page
+
+        @Override
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+            if ((keyCode == KeyEvent.KEYCODE_BACK) && siteWebView.canGoBack()) {
+
+                siteWebView.goBack();
+                return true;
+            }
+            return super.onKeyDown(keyCode, event);
+
+        } // end onKeyDown
+
+        @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        int id = item.getItemId();
+
+        return id == R.id.action_settings || super.onOptionsItemSelected(item);
+
+    }
+} // ends MainActivity
+
+// TODO: Reminder in calendar
+// TODO: Add back button in web - navigation
+// TODO: When rotate, trailer site resets - FIX
+// TODO: Remove action bar
