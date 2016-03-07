@@ -1,0 +1,33 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+
+    <item
+        android:title="@string/menuHomeText"
+        android:id="@+id/menuHomeLink"
+        android:icon="@mipmap/menuhomeicon"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+
+    <item
+        android:title="@string/menuSMSText"
+        android:id="@+id/menuTextLink"
+        android:icon="@mipmap/smsicon"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+
+    <item
+        android:title="@string/menuTrailersText"
+        android:id="@+id/menuTrailerLink"
+        android:icon="@mipmap/trailericon"
+        android:orderInCategory="100"
+        android:showAsAction="always"/>
+
+
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        android:orderInCategory="100"
+        android:showAsAction="never" />
+
+    </menu>
