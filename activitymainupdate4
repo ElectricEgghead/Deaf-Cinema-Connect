@@ -1,0 +1,161 @@
+ // activity_main.xml layout text - DELETE FROM CODE.
+
+ <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content"
+         android:id="@+id/scrollView">
+
+     <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            tools:context=".MainActivity"
+            android:background="#21b6a8"
+            android:scrollIndicators="right"
+            android:padding="6dp" >
+
+         <ScrollView
+             android:layout_width="match_parent"
+             android:layout_height="370dp"
+             android:id="@+id/webScrollView">
+
+         <WebView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/siteWebView"
+            android:nestedScrollingEnabled="true" />
+         </ScrollView>
+
+
+         <ScrollView
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:id="@+id/calendarScrollView"
+             android:layout_below="@+id/webScrollView">
+
+             <CalendarView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/dateCalendarView"
+                 android:clickable="true"
+                 android:minDate=""
+                 android:contentDescription="@string/dateCalendarView"
+                 android:background="#cbfffa"
+                 android:layout_marginTop="6dp" />
+         </ScrollView>
+
+     </RelativeLayout>
+    </ScrollView>
+ </RelativeLayout>
+
+
+
+
+// MainActivity.java - DELETE FROM CODE
+
+package asb.deafcinemaconnect;
+
+import android.app.Activity;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+
+public class MainActivity extends Activity {
+
+    // http://developer.android.com/guide/practices/screens_support.html#screen-independence
+
+    // **************  SIGNED APK - RELEASE MODE - GOOGLE PLAY STORE <!--TODO: Remove; RELEASE mode>
+
+    // LINK TO PAGERADAPTER YOUTUBE VIDEO - DELETE
+    // https://www.youtube.com/watch?v=pCz2znfwhGc  *******
+
+
+    WebView siteWebView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        siteWebView = (WebView) findViewById(R.id.siteWebView);
+        siteWebView.setWebViewClient(new siteWebClient());
+        siteWebView.getSettings().setJavaScriptEnabled(true);
+        siteWebView.loadUrl("http://www.captionfish.com/"); // TODO: Speed up site
+
+    } // end onCreate
+
+    public class siteWebClient extends WebViewClient {
+
+        @Override
+        public void onPageStarted(WebView siteWebView, String url, Bitmap favicon) {
+            super.onPageStarted(siteWebView, url, favicon); // TODO: Create a favicon
+
+        } // end onPageStarted
+
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+
+            view.loadUrl(url);
+            return true;
+        } // end shouldOverrideUrlLoading
+    }
+
+        // to handle "Back" key press event, stay in page
+
+        @Override
+        public boolean onKeyDown(int keyCode, KeyEvent event) {
+            if ((keyCode == KeyEvent.KEYCODE_BACK) && siteWebView.canGoBack()) {
+
+                siteWebView.goBack();
+                return true;
+            }
+            return super.onKeyDown(keyCode, event);
+
+        } // end onKeyDown
+
+        @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    // TODO: Home page - hide HOME actionbar icon
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            // when text icon clicked
+            case R.id.menuTextLink:
+                Intent intent = new Intent(MainActivity.this, Main2Activity.class);
+                startActivity(intent);
+                return true;
+
+            // when trailer icon is clicked
+            case R.id.menuTrailerLink:
+                Intent intent2 = new Intent(MainActivity.this, Main3Activity.class);
+                startActivity(intent2);
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    } // end onOptionsItemsSelected
+} // end MainActivity
+
+// TODO: Reminder in calendar; app widget
+// TODO: Add back button in web - navigation
+// TODO: When rotate, trailer site resets - FIX
+// TODO: Dynamic action bar
