@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Deaf Cinema Connect</string>
+    <string name="app_name"></string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -13,5 +13,8 @@
     <string name="numberEditText">To</string>
     <string name="SMSEditText">Enter message</string>
     <string name="textFriendsButton">Send!</string>
-    <string name="returnMainButton">Find another movie</string>
+    <string name="returnMainButton">Find movie</string>
+    <string name="menuHomeText">Search movies</string>
+    <string name="menuSMSText">Text Message</string>
+    <string name="menuTrailersText">Trailers</string>
 </resources>
