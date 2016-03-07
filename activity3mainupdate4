@@ -41,6 +41,8 @@
 
 </RelativeLayout>
 
+
+
 // MainActivity3.java - DELETE FROM CODE
 
 package asb.deafcinemaconnect;
@@ -52,10 +54,8 @@ import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 
 public class Main3Activity extends Activity {
 
@@ -69,20 +69,9 @@ public class Main3Activity extends Activity {
         trailerWebView = (WebView) findViewById(R.id.trailerWebView);
         trailerWebView.setWebViewClient(new siteWebClient());
         trailerWebView.getSettings().setJavaScriptEnabled(true);
-        trailerWebView.loadUrl("http://www.yourlocalcinema.com/subtitled.trailers.html");
+        trailerWebView.loadUrl("http://www.subtitledtrailers.com/");
 
-        Button returnMainButton = (Button)findViewById(R.id.returnMainButton);
-
-        returnMainButton.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Main3Activity.this, MainActivity.class);
-                startActivity(intent);
-            }
-
-        });
-
+        // TODO: "https://www.youtube.com/user/pchqfr2/videos" - link to subtitle trailer yt page
     } // end onCreate
 
     public class siteWebClient extends WebViewClient {
@@ -123,13 +112,25 @@ public class Main3Activity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        int id = item.getItemId();
+        switch (item.getItemId()) {
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            // when home icon clicked
+            case R.id.menuHomeLink:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+                return true;
+
+            // TODO: Trailer page - hide TRAILER actionbar icon
+
+            // when SMS icon is clicked
+            case R.id.menuTextLink:
+                Intent intent2 = new Intent(this, Main2Activity.class);
+                startActivity(intent2);
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    } // end onOptionsItemsSelected
 
-        return super.onOptionsItemSelected(item);
-    }
+
 } // end Main3Activity
