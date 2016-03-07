@@ -11,11 +11,15 @@
         android:minSdkVersion="15"
         android:targetSdkVersion="23" />
 
+      <!--TODO: Removed DCC label from actionbar; what are effects of this??
+      TODO: MAKE SURE APP IS GOOGLE INDEXABLE - application area -->
+
     <application
         android:allowBackup="true"
-        android:icon="@drawable/dcclogoround"
-        android:label="Deaf Cinema Connect"
+        android:icon="@mipmap/dccroundlogo"
+        android:label="@string/app_name"
         android:theme="@style/AppTheme">
+        <!-- android:theme="@android:style/Theme.NoTitleBar" -->
 
         <!--TODO: Research adb backup - maybe set to true-->
 
