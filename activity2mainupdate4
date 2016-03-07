@@ -118,6 +118,8 @@ public class Main2Activity extends Activity {
             }
         });
 
+        // TODO: Remove button; get actionbar to display
+        
         Button returnMainButton = (Button) findViewById(R.id.returnMainButton);
 
         returnMainButton.setOnClickListener(new View.OnClickListener() {
