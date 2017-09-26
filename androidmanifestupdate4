@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme">
         <!-- android:theme="@android:style/Theme.NoTitleBar" -->
 
-        <!--TODO: Research adb backup - maybe set to true-->
+        <!--TODO: Research adb backup | maybe set to true-->
 
         <activity
             android:name="asb.deafcinemaconnect.MainActivity"
