@@ -10,7 +10,7 @@
         android:showAsAction="always"/>
 
     <item
-        android:title="@string/menuSMSText"
+        android:title="@string/menuSMSText" // check icon shows
         android:id="@+id/menuTextLink"
         android:icon="@mipmap/smsicon"
         android:orderInCategory="100"
