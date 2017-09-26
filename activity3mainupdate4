@@ -1,4 +1,4 @@
-// activity_main3.xml layout text - DELETE FROM CODE
+// activity_main3.xml layout text - DELETE CODE
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
